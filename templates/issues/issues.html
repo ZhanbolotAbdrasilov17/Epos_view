@@ -1,0 +1,78 @@
+
+{% extends 'index.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block page %}
+
+
+
+<div class="nav-content-section-1">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="about-us-top-bg">
+                    <div class="about-top-image-txt">
+                        <p>{% trans "Выпуски" %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--.......................................-->
+<!--Mixitup section-->
+<!--.......................................-->
+<div class="portfolio-3-controls">
+    <div class="container ">
+        <div class="row">
+            <div class="">
+                <div class="controls mixitup-controls">
+                <div class="col-md-12  text-center">
+                    <div class="portfolio-controls">
+                        <br>
+                            <button data-filter="all" class="white-border filter mixitup-controls-show">Все</button>
+                            {% for c in category %}
+                            <button class="white-border filter" data-filter=".category-{{c.id}}">{{c.title}}</button>
+                            {% endfor %}
+
+
+
+                    </div>
+                </div>
+            </div>
+                <div id="product-grid" class="product-grid">
+                    {% for i in issues %}
+                    <a target="_blank" href="{{i.file.url}}">
+                <div class="mix category-{{i.category.id}} col-md-4 col-sm-6" data-myorder="1">
+                    <ul class="grid cs-style-4">
+                        <li class="figure">
+                            <div><img src="{{ i.image.url }}" class="center-block img-responsive lazy" alt=""></div>
+                           <div class="figcaption">
+                                <div class="mixitup-information mixitup-information-3-col">
+                                    <h3>{{i.title}}</h3>
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                        </a>
+                    {% endfor %}
+
+
+                <div class="gap"></div>
+                <div class="gap"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

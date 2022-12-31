@@ -1,0 +1,76 @@
+
+{% extends 'index.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block page %}
+
+
+<div class="nav-content-section-1">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="common-margin">
+                <div class="col-xs-12">
+                    <div class="about-us-top-bg">
+                        <div class="about-top-image-txt">
+                            <p>{% trans "Контакты" %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--.......................................-->
+<!--Contact Form & Map Section-->
+<!--.......................................-->
+<div class="contact-form">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="common-margin">
+
+
+                <div class="col-md-4 col-md-offset-2">
+                    <div class="contact-form-details">
+                        <div class="contact-form-heading">
+                            <h4>{% trans "Напишите нам" %}</h4>
+                        </div>
+                        <div class="contact-form-details-main">
+                            <form action="{% url 'mail_create' %}" method="post" class="d-frm-contacts d-white"
+                                  id="form" novalidate="novalidate">
+                                 {% csrf_token %}
+                                 {% for field in form %}
+                                    {{ field.error }}
+                                    {% endfor %}
+                                <div class="contact-name">
+                                    <input type="text" class="form-control" id="name" placeholder="Имя">
+                                </div>
+                                <div class="contact-email">
+                                    <input type="text" class="form-control" id="email" placeholder="Почта">
+                                </div>
+                                <div class="contact-message">
+                                    <textarea class="form-control" id="message" placeholder="Текст"></textarea>
+                                </div>
+                                <div class="contact-submit">
+                                    <button type="submit" class="btn btn-primary">{% trans "Отправить" %}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="contact-map">
+                        <div id="map-canvas">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1462.1534571114646!2d74.60376291768165!3d42.86636578027548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb7cf9486764f%3A0xc66f41655b630bed!2z0J3QsNGG0LjQvtC90LDQu9GM0L3QvtC1INC-0LHRidC10YHRgtCy0L4g0JrRgNCw0YHQvdC-0LPQviDQn9C-0LvRg9C80LXRgdGP0YbQsCDQmtGL0YDQs9GL0LfRgdGC0LDQvdCw!5e0!3m2!1sru!2skg!4v1671817251304!5m2!1sru!2skg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

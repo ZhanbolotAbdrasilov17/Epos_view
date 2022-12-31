@@ -1,0 +1,56 @@
+
+{% extends 'index.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block page %}
+
+
+<div class="home-blog-logo-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="logo">
+<!--                    <a href="#">EPOS NEWS</a><br>-->
+<!--                    <span>Body & Soul</span>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="homepage-blog-post">
+<div class="container">
+<div class="col-md-9">
+    {% for n in news %}
+    <div class="home-page-blog-style">
+        <div class="home-blog-img">
+            <a href="{% url 'news' n.pk %}"><img src="{{n.image.url}}" alt="" class="img-responsive"></a>
+        </div>
+        <div class="home-blog-date">
+            <p>{{n.created_at}}</p>
+        </div>
+        <div class="home-blog-heading">
+            <a href="{% url 'news' n.pk %}"><h4>{{n.title}}</h4></a>
+        </div>
+        <div class="home-blog-para">
+            <p>
+                {{n.text|truncatechars:300|safe}}
+            </p>
+        </div>
+        <div class="home-blog-continue">
+            <a href="{% url 'news' n.pk %}">{% trans "Подробнее" %}</a>
+        </div>
+
+
+    </div>
+    {% endfor %}
+
+
+</div>
+
+</div>
+</div>
+
+{% endblock %}

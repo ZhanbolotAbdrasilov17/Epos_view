@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>EPOS журнал</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png' %}">
+
+        <!--.......................................-->
+        <!--ALl Google Fonts-->
+        <!--.......................................-->
+        <link href='../../css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
+
+        <!--.......................................-->
+        <!--CSS Stylesheet-->
+        <!--.......................................-->
+
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/hover-3d.css' %}" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/buttons.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mixitup-home.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/menuzord.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/menuzord-animations.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+         <link rel="stylesheet" href="{% static 'css/responsive.css' %}" type="text/css">
+        <link href="https://fonts.cdnfonts.com/css/russo-one" rel="stylesheet">
+
+
+        <!--.......................................-->
+        <!--Header JS-->
+        <!--.......................................-->
+        <script type="text/javascript" src="{% static 'js/modernizr.custom.js' %}"></script>
+    </head>
+
+    <body>
+
+
+    <!--.......................................-->
+    <!--Home-1 Header-->
+    <!--.......................................-->
+    <div class="home-1-header">
+        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}">
+    <select name="language">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                {{ language.name_local }} ({{ language.code }})
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Go">
+</form>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="common-margin">
+                    <div class="col-xs-12">
+                    <div class="home-navigation">
+                        <div id="menuzord" class="menuzord red">
+                            <a href="{% url 'home' %}"><img height="57px" src="{{logo.logo.url}}" alt="Logo"></a>
+                            <ul class="menuzord-menu">
+
+                                <li><a href="{% url 'home' %}">{% trans "Главная" %}</a></li>
+<!--                                <li><a href="contact.html">О журнале</a></li>-->
+                                <li><a href="{% url 'for_authors' %}">{% trans "Авторам" %}</a></li>
+                                <li><a href="{% url 'issues' %}">{% trans "Выпуски" %}</a></li>
+                                <li><a href="{% url 'news' %}">{% trans "Новости" %}</a></li>
+                                <li><a href="{% url 'contact_page' %}">{% trans "Контакты" %}</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--.......................................-->
+    <!--Nav & content Section-->
+    <!--.......................................-->
+
+
+
+
+{% block page %} {% endblock %}
+
+
+
+
+    <!--.......................................-->
+    <!--Footer-->
+    <!--.......................................-->
+
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class=" common-margin">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="logo-footer">
+                                    <p><img src="{{logo.logo.url}}" alt=""></p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="footer-content">
+                                    <i class="fa fa-mobile"></i>
+                                    <h3>{{contacts.address}}</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="footer-content">
+                                    <i class="fa fa-credit-card"></i>
+                                    <h3>{{contacts.email}}</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="footer-content">
+                                    <i class="fa fa-mobile"></i>
+                                    <h3>{{phones.priem}}</h3>
+                                    <h3>{{phones.faqs}}</h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-copyright">
+                        <p>&copy; Copyright 2022 Epos Magazine. All rights reserved. <a target="_blank" href="https://asoi.kg">ASOI studios</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-8  col-md-6"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!--.......................................-->
+    <!--All JS LINK-->
+    <!--.......................................-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.mixitup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.hover3d.min.js' %}"></script>
+    <script src="{% static 'js/toucheffects.js' %}"></script>
+    <script src="{% static 'js/menuzord.js' %}"></script>
+    <script src="{% static 'js/jquery.fitvids.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bjqs-1.3.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    </body>
+</html>
