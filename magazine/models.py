@@ -135,6 +135,10 @@ class HomeAcademy(models.Model):
     def __str__(self):
         return 'Главная - Комментарий'
 
+    class Meta:
+        verbose_name_plural = 'Манас академия'
+        verbose_name = 'Манас академия'
+
 
 class HomeStatistic(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
@@ -187,3 +191,17 @@ class Issues(models.Model):
     class Meta:
         verbose_name_plural = 'Выпуски - Категории'
         verbose_name = 'Выпуски - Категории'
+
+
+class Mail(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Имя')
+    email = models.CharField(max_length=100, verbose_name='Почта')
+    text = models.TextField(verbose_name='Текст')
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name_plural = 'Обращения клиентов'
+        verbose_name = 'Обращение клиентов'

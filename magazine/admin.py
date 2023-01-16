@@ -72,3 +72,5 @@ class IssuesCategoryAdminList(admin.ModelAdmin):
 @admin.register(Issues)
 class IssuesAdminList(admin.ModelAdmin):
     pass
+
+admin.site.register(Mail)

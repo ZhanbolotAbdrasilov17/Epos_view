@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 from django.views import View
 from .models import *
+from .forms import MailForm
+from django.core.mail import send_mail
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 
 
 def home(request):
@@ -111,12 +116,12 @@ class MailCreateView(View):
             send_mail(
                 f'{last_sender.name} {last_sender.email}',
                 message,
-                'send_mail_asoi@mail.ru',
-                ['itpythonzhanbolot@gmail.com'],
+                'manas.2024@mail.ru',
+                [Contacts.objects.last().email],
                 fail_silently=False,
             )
 
             messages.add_message(request, messages.SUCCESS, 'Письмо отправлено!')
-            return HttpResponseRedirect(redirect_to=reverse_lazy('contacts'))
+            return HttpResponseRedirect(redirect_to=reverse_lazy('contact_page'))
 
         messages.add_message(request, messages.ERROR, 'Ошибка отправки данных.')
